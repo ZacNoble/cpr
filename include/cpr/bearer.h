@@ -1,8 +1,8 @@
 #ifndef CPR_BEARER_H
 #define CPR_BEARER_H
 
-#include <curl/curlver.h>
 #include <string>
+#include <curl/curlver.h>
 
 #include <utility>
 
@@ -14,10 +14,12 @@ namespace cpr {
 class Bearer {
   public:
     // NOLINTNEXTLINE(google-explicit-constructor, hicpp-explicit-conversions)
-    Bearer(std::string token) : token_string_{std::move(token)} {}
+    Bearer(const std::string& token) : token_string_{token} {}
+    // NOLINTNEXTLINE(google-explicit-constructor, hicpp-explicit-conversions)
+    Bearer(std::string&& token) : token_string_{std::move(token)} {}
     Bearer(const Bearer& other) = default;
     Bearer(Bearer&& old) noexcept = default;
-    virtual ~Bearer() noexcept;
+    virtual ~Bearer() noexcept = default;
 
     Bearer& operator=(Bearer&& old) noexcept = default;
     Bearer& operator=(const Bearer& other) = default;

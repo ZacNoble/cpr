@@ -12,14 +12,18 @@
 namespace cpr {
 
 struct Parameter {
-    Parameter(std::string p_key, std::string p_value) : key{std::move(p_key)}, value{std::move(p_value)} {}
+    Parameter(const std::string& p_key, const std::string& p_value) : key{p_key}, value{p_value} {}
+    Parameter(std::string&& p_key, std::string&& p_value)
+            : key{std::move(p_key)}, value{std::move(p_value)} {}
 
     std::string key;
     std::string value;
 };
 
 struct Pair {
-    Pair(std::string p_key, std::string p_value) : key(std::move(p_key)), value(std::move(p_value)) {}
+    Pair(const std::string& p_key, const std::string& p_value) : key(p_key), value(p_value) {}
+    Pair(std::string&& p_key, std::string&& p_value)
+            : key(std::move(p_key)), value(std::move(p_value)) {}
 
     std::string key;
     std::string value;
